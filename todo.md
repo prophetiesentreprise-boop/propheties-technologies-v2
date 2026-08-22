@@ -1,0 +1,138 @@
+# Project TODO
+
+- [x] Mettre en place l’identité visuelle premium de Propheties Technologies et la navigation responsive.
+- [x] Créer la page d’accueil avec hero animé, services, indicateurs de confiance et appels à l’action « Demander un devis ».
+- [x] Créer la page Services avec les offres IT, icônes, descriptions et parcours de prise de contact.
+- [x] Créer la page Tutoriels avec une galerie publique de vidéos intégrées.
+- [x] Créer la page À propos avec mission, valeurs, équipe et éléments de réassurance non fictifs.
+- [x] Créer la page Contact avec formulaire de demande et coordonnées configurables.
+- [x] Ajouter un chatbot IA sous forme de bulle persistante sur l’ensemble des pages.
+- [x] Mettre en place les données de tutoriels vidéo, les procédures serveur et les accès owner uniquement.
+- [x] Générer et appliquer la migration des tables de tutoriels et de demandes de contact.
+- [x] Valider l’accès owner-only des procédures d’administration des tutoriels.
+- [x] Créer le panneau d’administration owner pour ajouter, modifier et supprimer les tutoriels vidéo.
+- [x] Ajouter des tests unitaires couvrant les règles d’accès et les données de tutoriels.
+- [x] Vérifier le rendu desktop et mobile, corriger les erreurs et préparer la version livrable.
+- [x] Couvrir par des tests les mutations administratives de création, modification et suppression des tutoriels.
+- [x] Vérifier les parcours desktop et mobile restants, y compris le menu responsive et l’accès administration.
+- [x] Exécuter le build de production et sauvegarder la version validée du site.
+- [x] Retrouver le logo initial de l’entreprise et créer une déclinaison 3D légèrement agrandie pour le site.
+- [x] Enrichir la charte graphique avec des couleurs vives et des visuels cohérents avec l’activité IT.
+- [x] Rendre les cartes de services cliquables vers des pages détaillées, illustrées et orientées conversion.
+- [x] Préparer et intégrer une première série de tutoriels IT grand public, accompagnés de textes et de scripts vidéo responsables.
+- [x] Tester les nouveaux parcours et enregistrer la mise à jour livrable.
+- [x] Alléger le rendu du chatbot afin de stabiliser la compilation de production dans les contraintes mémoire du projet.
+- [x] Ajouter des visuels immersifs aux bannières Services, Tutoriels, À propos et Contact.
+- [x] Afficher le téléphone et les accès appel/WhatsApp dans la barre de navigation.
+- [x] Remplacer les références publiques à Bingerville par Abidjan dans les textes et coordonnées.
+- [x] Ajouter une carte de localisation dans la page Contact et moderniser son parcours visuel.
+- [x] Mettre à jour la police de caractère et vérifier la cohérence responsive de la nouvelle interface.
+- [x] Tester les nouveaux parcours des tutoriels scénarisés et du back office.
+- [x] Sauvegarder un checkpoint incluant les dernières modifications validées.
+- [x] Moderniser le back office owner avec une interface plus claire et des raccourcis de gestion utiles.
+- [x] Confirmer l’orthographe définitive du domaine et intégrer les adresses e-mail professionnelles dans l’interface après cette validation.
+- [x] Vérifier le back office owner, la carte Abidjan et les nouveaux parcours de navigation lors des tests finaux.
+- [x] Remplacer le rendu de carte Abidjan vide par une carte intégrée visible sans clé supplémentaire.
+- [x] Rédiger un script détaillé de tournage pour chacun des tutoriels pédagogiques proposés.
+- [x] Ajouter au back office un espace de préparation et de publication lié à chaque script de tutoriel.
+- [x] Inclure les tests de cohérence des scripts de tutoriels dans la commande de validation automatisée.
+- [x] Corriger l’affichage du logo, uniformiser l’en-tête et renforcer la lisibilité des menus.
+- [x] Augmenter la présence des images de bannière et enrichir les fonds colorés par des visuels cohérents.
+- [x] Renforcer la typographie et les couleurs des numérotations, libellés d’expertise et éléments de service.
+- [x] Créer un espace owner permettant de remplacer les images de fond stratégiques du site.
+- [x] Tester les contrôles d’images, les parcours desktop et mobile.
+- [x] Sauvegarder le checkpoint de la version affinée après les validations visuelles et automatisées.
+- [x] Ajuster le cartouche blanc du logo du pied de page afin d’obtenir des proportions et des marges uniformes.
+- [x] Vérifier et corriger l’accès direct au gestionnaire d’images du back office.
+- [x] Recenser les textes, appels à l’action et sections foncées qui doivent devenir administrables.
+- [x] Créer un registre de contenus textuels sécurisé et les procédures owner de mise à jour.
+- [x] Ajouter au back office un gestionnaire de contenus pour modifier les textes et appels à l’action des pages.
+- [x] Ajouter des emplacements d’images aux sections bleu foncé comportant des textes, avec contrôle owner associé.
+- [x] Connecter les contenus administrables à toutes les pages publiques et tester les modifications en direct.
+- [x] Valider et publier la version entièrement administrable.
+- [x] Ajouter un emplacement visuel owner pour l’appel à l’action sombre des pages de détail de services.
+- [x] Rendre administrables les textes des cartes et des pages de détail de services.
+- [x] Couvrir par des tests le flux owner de lecture et d’enregistrement des contenus personnalisés.
+- [x] Vérifier à nouveau les parcours desktop et mobile des services ainsi que les nouveaux réglages owner.
+- [x] Remplacer l’adresse de contact publique par les adresses professionnelles confirmées et afficher le domaine officiel.
+- [x] Vérifier les coordonnées publiques mises à jour puis publier la version correspondante.
+- [x] Sauvegarder un nouveau checkpoint après l’intégration des adresses professionnelles et du domaine officiel.
+- [x] Vérifier que le checkpoint publié inclut les coordonnées, la page Contact, le pied de page et le chatbot mis à jour.
+- [x] Aligner les repères numérotés de la méthode afin que 01, 02 et 03 restent sur la même ligne sans déformation.
+- [x] Ajouter des images de fond aux cartes textuelles de la page Services, en préservant une lecture contrastée.
+- [x] Éclaircir de manière cohérente les visuels du site sans nuire à la lisibilité des textes.
+- [x] Préparer un dossier compressé et un guide de démarrage local pour le code source du site.
+- [x] Documenter l’accès owner au back office et les informations d’hébergement actuelles.
+- [x] Créer une illustration de fond différente, cohérente avec chaque méthode associée à un service.
+- [x] Ajouter ces fonds de méthode au registre owner afin qu’ils restent modifiables depuis le back office.
+- [x] Ajouter un lien d’administration discret, visible uniquement pour le propriétaire authentifié.
+- [x] Vérifier l’intégration desktop/mobile, les droits owner et publier la version mise à jour.
+- [x] Vérifier explicitement que les six illustrations de méthode apparaissent dans le gestionnaire visuel owner et peuvent être remplacées.
+- [x] Confirmer visuellement que le lien Gestion admin est affiché dans une session owner et demeure conditionné au rôle admin.
+- [x] Sauvegarder et publier le checkpoint contenant les fonds de méthode et le lien owner.
+- [x] Documenter et contrôler le conditionnement du lien Gestion admin au rôle owner dans l’en-tête desktop et mobile.
+- [x] Capturer une validation dédiée montrant le lien Gestion admin dans une session owner.
+- [x] Sauvegarder et publier le checkpoint final contenant les fonds de méthode et le lien owner.
+- [x] Ajouter un tableau de bord owner réunissant les indicateurs essentiels, les demandes reçues et les accès rapides du site.
+- [x] Mettre en place une gestion sécurisée des administrateurs : consultation des comptes, promotion et retrait du rôle admin par le propriétaire.
+- [x] Ajouter un espace de suivi des demandes de contact avec statut, note de traitement et réponse préparée depuis le back office.
+- [x] Ajouter les procédures serveur, les migrations et les tests nécessaires aux nouveaux droits et au traitement des demandes.
+- [x] Vérifier les parcours desktop/mobile, les règles owner et publier la version du back office enrichi.
+- [x] Clarifier visuellement dans la gestion des administrateurs que le compte propriétaire ne peut pas retirer son propre accès.
+- [x] Identifier les données analytiques disponibles pour afficher des visites réelles, sans données simulées.
+- [x] Ajouter au tableau de bord owner les visiteurs, pages vues et la période de consultation.
+- [x] Tester l’affichage des statistiques de fréquentation et publier la version mise à jour.
+- [x] Vérifier et corriger l’association entre le compte authentifié du demandeur et l’identifiant propriétaire configuré.
+- [x] Garantir par test que seul le compte propriétaire peut promouvoir ou révoquer les administrateurs.
+- [x] Rendre explicites dans le dashboard les périodes couvertes par les statistiques de fréquentation, puis les valider avant publication.
+- [x] Corriger toute erreur runtime liée à l’enregistrement des visites et vérifier les journaux serveur et client.
+- [x] Valider les statistiques et la période visible dans le dashboard, puis publier un nouveau checkpoint.
+- [x] Concevoir un bouton « Ajouter un administrateur » avec invitation sécurisée par e-mail depuis le back office.
+- [x] Mettre en place l’activation par lien à durée limitée, le choix de mot de passe et la connexion administrateur indépendante de Manus.
+- [ ] Configurer l’expéditeur Resend sur un domaine appartenant au propriétaire et vérifier le parcours d’invitation de bout en bout (reporté jusqu’à la vérification DNS du domaine).
+- [x] Retirer toute exposition publique de l’administration et réserver les routes, liens et contenus aux administrateurs activés ou invités.
+- [ ] Activer l’envoi réel des e-mails d’invitation lorsque l’expéditeur sur domaine vérifié sera renseigné dans Resend (reporté par le propriétaire).
+- [x] Corriger l’accès owner aux pages administratives lorsque la session affiche un rôle propriétaire mais que les procédures renvoient « Accès réservé ».
+- [x] Intégrer le QR code fourni dans la présentation publique avec un rendu net et scannable sur ordinateur et mobile.
+- [x] Ajouter un accès d’écoute audio accessible sur chaque page publique du site.
+- [x] Ajouter des QR codes associés aux pages, menant vers leur parcours d’écoute sur mobile.
+- [x] Vérifier la lecture audio, l’accessibilité et le rendu responsive des nouveaux contrôles.
+- [x] Tester le flux audio avec une synthèse vocale simulée : lecture, pause, reprise et arrêt.
+- [x] Vérifier le parcours QR code jusqu’à l’ouverture du panneau d’écoute via l’URL générée.
+- [x] Compléter la validation d’accessibilité des contrôles audio, de leurs libellés et de l’état navigateur non compatible.
+- [x] Ajouter des tests UI d’accessibilité pour l’ouverture clavier, les libellés, les commandes audio et l’état sans synthèse vocale.
+- [x] Documenter la vérification manuelle du focus, de la fermeture du panneau et des libellés d’écoute.
+- [x] Confirmer dans la documentation la vérification du focus clavier, de la fermeture par Échap et des libellés accessibles du panneau audio.
+- [x] Rendre le bouton d’écoute directement visible dans l’en-tête public sur ordinateur, tablette et mobile, sans dépendre de l’ouverture du menu.
+- [x] Retirer les QR codes et toutes les explications associées du parcours d’écoute.
+- [x] Corriger l’absence de son lors du clic sur « Écouter » et vérifier la lecture vocale réelle.
+- [x] Simplifier l’interface audio autour du seul bouton « Écouter » et de commandes de pause ou d’arrêt si nécessaire.
+- [x] Vérifier dans un navigateur réel que le bouton « Écouter » produit une voix audible et consigner le résultat.
+- [x] Gérer explicitement l’absence de voix, la synthèse vocale désactivée ou les blocages de lecture, avec une indication utile au visiteur.
+- [x] Préparer des scripts de narration française concis et naturels pour les pages publiques principales.
+- [x] Produire des fichiers audio au rendu humain, chaleureux et professionnel.
+- [x] Remplacer la synthèse vocale native par les narrations audio naturelles dans le bouton « Écouter ».
+- [x] Vérifier les commandes audio, le chargement et la lecture des fichiers sur ordinateur et mobile.
+- [x] Redémarrer l’environnement de développement et contrôler les narrations audio validées.
+- [x] Redémarrer l’environnement de développement, contrôler les narrations audio validées et publier la version approuvée.
+- [x] Recueillir et intégrer les dernières modifications demandées avant la connexion du nom de domaine acquis par le propriétaire.
+- [x] Effectuer et consigner une vérification explicite des narrations naturelles : chargement des onze fichiers, commandes testées, visibilité desktop/mobile et gestion d’erreur couverte par tests.
+- [x] Mettre à jour la documentation audio en distinguant les tests automatisés des contrôles de disponibilité et de rendu effectués après l’adoption des fichiers naturels.
+- [x] Recenser les sous-expertises affichées dans chaque grande famille de services et définir une page détaillée accessible au clic pour chacune.
+- [x] Créer les pages détaillées des sous-expertises — y compris VoIP — avec explications concrètes, bénéfices, déroulé d’intervention, livrables et appel à l’action.
+- [x] Revoir la typographie des repères numérotés, surtitres et intitulés éditoriaux afin de renforcer le caractère humain, premium et distinctif du site.
+- [x] Redimensionner les cadres blancs du logo à son contenu, supprimer les espaces inutiles et agrandir légèrement le logo dans l’en-tête et le pied de page.
+- [x] Ajouter prophetiesentreprise@gmail.com, les numéros +225 05 01 41 61 24 et +225 01 50 69 42 43, puis diriger WhatsApp vers le second numéro.
+- [x] Corriger le cadrage du logo afin qu’il reste intégralement dans son cadre, avec des proportions équilibrées dans l’en-tête et le pied de page.
+- [x] Supprimer tout agrandissement CSS susceptible de rogner le logo et définir un affichage entièrement contenu dans ses deux emplacements.
+- [x] Vérifier explicitement, sur ordinateur et mobile, que le logo entier est visible et équilibré sans dépassement ni découpe.
+- [x] Ajouter une preuve automatisée de l’affichage sans zoom ni rognage dans l’en-tête et le pied de page, puis consigner les observations visuelles desktop et mobile.
+- [x] Ajouter une preuve inspectable du rendu mesuré du logo sur ordinateur et mobile, incluant ses dimensions et l’absence de chevauchement avec les contrôles d’en-tête.
+- [x] Ajouter une preuve inspectable du rendu du logo du pied de page sur ordinateur et mobile, puis documenter les résultats pour les deux emplacements partagés.
+- [x] Auditer les pages actuellement générées pour chaque sous-expertise et remplacer tout contenu trop générique ou mal associé.
+- [x] Créer des pages distinctes et approfondies pour Câblage informatique et télévisuel, Wi-Fi, hotspots et portail captif, Téléphonie classique et VoIP, ainsi que Contrôle d’accès et RFID.
+- [x] Créer des pages distinctes et approfondies pour Gouvernance et conformité SSI, Cartographie des risques, PCA / PRA et résilience, ainsi que Sensibilisation des équipes.
+- [x] Étendre le même niveau de détail à chaque sous-titre de toutes les autres grandes familles de services.
+- [x] Vérifier que chaque carte ou sous-titre mène vers sa bonne page détaillée, sur ordinateur et mobile, avant publication.
+- [x] Ajouter une vérification mobile reproductible des 24 liens de sous-expertises pour confirmer que chaque carte ouvre sa bonne page détaillée.
+- [x] Documenter explicitement la validation mobile complète des parcours de sous-expertises avant publication.

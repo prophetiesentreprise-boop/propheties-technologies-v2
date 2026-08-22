@@ -1,0 +1,62 @@
+{
+  "version": "7",
+  "dialect": "mysql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "5",
+      "when": 1786740014171,
+      "tag": "0000_nappy_franklin_richards",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1786740253600,
+      "tag": "0001_good_jack_murdock",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1786748572308,
+      "tag": "0002_nostalgic_randall",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "5",
+      "when": 1786749926112,
+      "tag": "0003_giant_the_enforcers",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "5",
+      "when": 1786754293454,
+      "tag": "0004_bitter_thunderbolts",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "5",
+      "when": 1786755018152,
+      "tag": "0005_conscious_juggernaut",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "5",
+      "when": 1786755162595,
+      "tag": "0006_abnormal_albert_cleary",
+      "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "5",
+      "when": 1786757130750,
+      "tag": "0007_gifted_lady_mastermind",
+      "breakpoints": true
+    }
+  ]
+}

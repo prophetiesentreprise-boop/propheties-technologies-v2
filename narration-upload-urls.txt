@@ -1,0 +1,48 @@
+Uploading file (webdev private): narration-accueil.wav (size: 1499564 bytes)
+File uploaded successfully!
+Storage Path: /manus-storage/narration-accueil_f35ab3ce.wav
+Uploading file (webdev private): narration-services.wav (size: 1201964 bytes)
+File uploaded successfully!
+Storage Path: /manus-storage/narration-services_0e9c1c46.wav
+Uploading file (webdev private): narration-tutoriels.wav (size: 877484 bytes)
+File uploaded successfully!
+Storage Path: /manus-storage/narration-tutoriels_f8cefe99.wav
+Uploading file (webdev private): narration-a-propos.wav (size: 1069484 bytes)
+File uploaded successfully!
+Storage Path: /manus-storage/narration-a-propos_17fc4e26.wav
+Uploading file (webdev private): narration-contact.wav (size: 894764 bytes)
+File uploaded successfully!
+Storage Path: /manus-storage/narration-contact_6259f44f.wav
+Uploading file (webdev private): narration-reseaux-installations.wav (size: 1127084 bytes)
+File uploaded successfully!
+Storage Path: /manus-storage/narration-reseaux-installations_6901dc1c.wav
+Uploading file (webdev private): narration-cybersecurite.wav (size: 1459244 bytes)
+File uploaded successfully!
+Storage Path: /manus-storage/narration-cybersecurite_1f98a6ba.wav
+Uploading file (webdev private): narration-maintenance-support.wav (size: 1561004 bytes)
+File uploaded successfully!
+Storage Path: /manus-storage/narration-maintenance-support_8284e426.wav
+Uploading file (webdev private): narration-technologie-ia.wav (size: 952364 bytes)
+File uploaded successfully!
+Storage Path: /manus-storage/narration-technologie-ia_21963639.wav
+Uploading file (webdev private): narration-formation.wav (size: 844844 bytes)
+File uploaded successfully!
+Storage Path: /manus-storage/narration-formation_bb5b71a5.wav
+Uploading file (webdev private): narration-solutions-sur-mesure.wav (size: 890924 bytes)
+File uploaded successfully!
+Storage Path: /manus-storage/narration-solutions-sur-mesure_6bf4933b.wav
+
+========== Upload Summary ==========
+[SUCCESS] narration-accueil.wav -> /manus-storage/narration-accueil_f35ab3ce.wav
+[SUCCESS] narration-services.wav -> /manus-storage/narration-services_0e9c1c46.wav
+[SUCCESS] narration-tutoriels.wav -> /manus-storage/narration-tutoriels_f8cefe99.wav
+[SUCCESS] narration-a-propos.wav -> /manus-storage/narration-a-propos_17fc4e26.wav
+[SUCCESS] narration-contact.wav -> /manus-storage/narration-contact_6259f44f.wav
+[SUCCESS] narration-reseaux-installations.wav -> /manus-storage/narration-reseaux-installations_6901dc1c.wav
+[SUCCESS] narration-cybersecurite.wav -> /manus-storage/narration-cybersecurite_1f98a6ba.wav
+[SUCCESS] narration-maintenance-support.wav -> /manus-storage/narration-maintenance-support_8284e426.wav
+[SUCCESS] narration-technologie-ia.wav -> /manus-storage/narration-technologie-ia_21963639.wav
+[SUCCESS] narration-formation.wav -> /manus-storage/narration-formation_bb5b71a5.wav
+[SUCCESS] narration-solutions-sur-mesure.wav -> /manus-storage/narration-solutions-sur-mesure_6bf4933b.wav
+=====================================
+Total: 11, Success: 11, Failed: 0
