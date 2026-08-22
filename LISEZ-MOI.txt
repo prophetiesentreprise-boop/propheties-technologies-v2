@@ -1,0 +1,22 @@
+CORRECTIF — 4 fichiers à remplacer + 1 dossier à supprimer
+=============================================================
+
+Dans ton dossier propheties-technologies-v2 (celui cloné avec GitHub Desktop) :
+
+1. Remplace ces 4 fichiers par ceux fournis ici :
+   - package.json
+   - vite.config.ts
+   - pnpm-lock.yaml
+   - vercel.json
+
+2. Supprime entièrement le dossier "patches/" à la racine du projet
+   (il ne contient plus qu'un fichier obsolète, plus utilisé).
+
+3. Dans GitHub Desktop : tu verras les fichiers modifiés apparaître.
+   Écris un message de commit (ex: "Correction dépendances pnpm")
+   puis clique "Commit to main", puis "Push origin".
+
+4. Sur Vercel : Deployments > ... sur le dernier essai > Redeploy.
+
+Ce correctif a été testé de bout en bout ici (installation ET build
+de production réussis) avant de te l'envoyer.
