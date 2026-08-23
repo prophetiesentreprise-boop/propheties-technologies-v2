@@ -74,7 +74,7 @@ async function main() {
 
   console.log("\n✅ Compte propriétaire créé avec succès !\n");
   console.log("Ton lien d'accès personnel (à garder secret, ajoute-le à tes favoris) :\n");
-  console.log(`   https://TON-DOMAINE/admin/login?entry=${token}\n`);
+  console.log(`   https://TON-DOMAINE/admin/connexion?entry=${token}\n`);
   console.log("Remplace TON-DOMAINE par ton vrai domaine une fois déployé (ex: prophetiestechnologies.com).");
   console.log(`Identifiants de connexion : ${email} / le mot de passe que tu as fourni.\n`);
 

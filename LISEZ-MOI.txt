@@ -1,22 +1,20 @@
-CORRECTIF — 4 fichiers à remplacer + 1 dossier à supprimer
-=============================================================
+CORRECTIF — Images cassées + lien admin
 
-Dans ton dossier propheties-technologies-v2 (celui cloné avec GitHub Desktop) :
+1. client/src/data/siteContent.ts
+   Remplace le fichier à ce chemin exact dans ton projet.
+   (Toutes les images /manus-storage/... cassées ont été remplacées
+   par de vraies images qui fonctionnent, et le logo pointe maintenant
+   vers un fichier local fiable.)
 
-1. Remplace ces 4 fichiers par ceux fournis ici :
-   - package.json
-   - vite.config.ts
-   - pnpm-lock.yaml
-   - vercel.json
+2. client/public/propheties-logo.png
+   Nouveau fichier à ajouter à ce chemin exact (créer le dossier public/
+   s'il n'existe pas déjà dans client/).
 
-2. Supprime entièrement le dossier "patches/" à la racine du projet
-   (il ne contient plus qu'un fichier obsolète, plus utilisé).
+3. scripts/create-owner.ts
+   Remplace le fichier existant (corrige l'URL affichée : /admin/connexion
+   au lieu de /admin/login, pour les prochaines fois où tu créeras un compte).
 
-3. Dans GitHub Desktop : tu verras les fichiers modifiés apparaître.
-   Écris un message de commit (ex: "Correction dépendances pnpm")
-   puis clique "Commit to main", puis "Push origin".
+Ensuite : GitHub Desktop > Commit > Push. Vercel redéploiera automatiquement.
 
-4. Sur Vercel : Deployments > ... sur le dernier essai > Redeploy.
-
-Ce correctif a été testé de bout en bout ici (installation ET build
-de production réussis) avant de te l'envoyer.
+Pour le lien admin qui donne une 404 avec ?entry=..., c'est un souci séparé,
+encore en cours de diagnostic — pas résolu par ce correctif-ci.
