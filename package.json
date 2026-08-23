@@ -16,7 +16,8 @@
     "db:push": "drizzle-kit generate && drizzle-kit migrate",
     "create-owner": "tsx scripts/create-owner.ts",
     "generate-narration": "tsx scripts/generate-narration.ts",
-    "upload-narration": "tsx scripts/upload-narration.ts"
+    "upload-narration": "tsx scripts/upload-narration.ts",
+    "build:api": "esbuild api-src/index.ts --platform=node --bundle --format=esm --outfile=api/index.js --packages=external"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.45.4",
