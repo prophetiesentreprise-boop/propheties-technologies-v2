@@ -15,7 +15,6 @@ import AdminVisuals from "./pages/AdminVisuals";
 import AdminContent from "./pages/AdminContent";
 import AdminContacts from "./pages/AdminContacts";
 import AdminDashboard from "./pages/AdminDashboard";
-import AdminActivation from "./pages/AdminActivation";
 import AdminLogin from "./pages/AdminLogin";
 import AdminUsers from "./pages/AdminUsers";
 import Contact from "./pages/Contact";
@@ -55,8 +54,7 @@ function Router() {
       <Route path={"/a-propos"} component={About} />
       <Route path={"/tutoriels"} component={Tutorials} />
       <Route path={"/contact"} component={Contact} />
-      <Route path={"/admin/connexion"} component={AdminLogin} />
-      <Route path={"/admin/activation"} component={AdminActivation} />
+      <Route path={"/admin/connexion"} component={() => <AdminRoute><AdminDashboard /></AdminRoute>} />
       <Route path={"/admin"} component={() => <AdminRoute><AdminDashboard /></AdminRoute>} />
       <Route path={"/admin/demandes"} component={() => <AdminRoute><AdminContacts /></AdminRoute>} />
       <Route path={"/admin/tutoriels"} component={() => <AdminRoute><AdminTutorials /></AdminRoute>} />

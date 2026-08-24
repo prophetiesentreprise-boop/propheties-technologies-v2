@@ -1,20 +1,65 @@
-CORRECTIF — Images cassées + lien admin
+CORRECTIF — Authentification admin simplifiée (Supabase Auth)
 
-1. client/src/data/siteContent.ts
-   Remplace le fichier à ce chemin exact dans ton projet.
-   (Toutes les images /manus-storage/... cassées ont été remplacées
-   par de vraies images qui fonctionnent, et le logo pointe maintenant
-   vers un fichier local fiable.)
+Fini le lien secret avec token ! Désormais : juste /admin, avec ton
+email + mot de passe, gérés directement dans Supabase.
 
-2. client/public/propheties-logo.png
-   Nouveau fichier à ajouter à ce chemin exact (créer le dossier public/
-   s'il n'existe pas déjà dans client/).
+=========================================================================
+ÉTAPE 1 — Désactiver les inscriptions publiques (IMPORTANT, sécurité)
+=========================================================================
+Dans Supabase : Authentication > Sign In / Providers (ou "Settings"
+selon la version) > trouve "Allow new users to sign up" > DÉSACTIVE.
 
-3. scripts/create-owner.ts
-   Remplace le fichier existant (corrige l'URL affichée : /admin/connexion
-   au lieu de /admin/login, pour les prochaines fois où tu créeras un compte).
+Sans ça, n'importe qui pourrait créer un compte et obtenir un accès
+admin automatiquement (le premier compte qui se connecte devient
+propriétaire).
 
-Ensuite : GitHub Desktop > Commit > Push. Vercel redéploiera automatiquement.
+=========================================================================
+ÉTAPE 2 — Créer ton compte admin dans Supabase
+=========================================================================
+Dans Supabase : Authentication > Users > Add user > Create new user.
+Remplis email + mot de passe (celui de ton choix). Coche "Auto Confirm
+User" si l'option existe (pour ne pas avoir besoin de valider par email).
 
-Pour le lien admin qui donne une 404 avec ?entry=..., c'est un souci séparé,
-encore en cours de diagnostic — pas résolu par ce correctif-ci.
+=========================================================================
+ÉTAPE 3 — Ajouter 2 nouvelles variables sur Vercel
+=========================================================================
+Project Settings > Environment Variables > Add Environment Variable,
+deux fois :
+
+  VITE_SUPABASE_URL = https://ntcvnxqunikhbizipowi.supabase.co
+  VITE_SUPABASE_ANON_KEY = ta clé "anon public" (PAS la service_role,
+                            celle-ci est sans risque à exposer publiquement)
+
+Coche Production + Preview pour les deux.
+
+=========================================================================
+ÉTAPE 4 — Remplacer les fichiers dans ton projet local
+=========================================================================
+- client/src/lib/supabaseClient.ts       (NOUVEAU fichier)
+- client/src/pages/AdminLogin.tsx         (remplace)
+- client/src/components/AdminRoute.tsx    (remplace)
+- client/src/_core/hooks/useAuth.ts       (remplace)
+- client/src/App.tsx                      (remplace)
+- client/src/main.tsx                     (remplace)
+- server/_core/context.ts                 (remplace)
+- api/index.js                            (remplace — déjà régénéré,
+                                             tu n'as rien à reconstruire)
+
+=========================================================================
+ÉTAPE 5 — Commit + Push + tester
+=========================================================================
+GitHub Desktop > Commit > Push. Vercel redéploiera automatiquement.
+
+Une fois en ligne : va sur prophetiestechnologies.com/admin, connecte-toi
+avec l'email + mot de passe créés à l'étape 2. Le premier compte qui se
+connecte avec succès devient automatiquement "propriétaire" — aucun
+script à lancer.
+
+Pour changer ton mot de passe à l'avenir : Supabase > Authentication >
+Users > clique sur ton compte > Reset Password (ou modifie-le directement
+là). Plus besoin de mes scripts create-owner.ts / reset-owner-link.ts
+pour ça (ils restent disponibles si un jour tu ajoutes d'autres admins,
+mais ne sont plus indispensables pour toi).
+
+Testé de bout en bout ici (build complet + vérification de la fonction
+API assemblée) avant envoi.

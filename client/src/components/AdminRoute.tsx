@@ -1,5 +1,5 @@
 import { useAuth } from "@/_core/hooks/useAuth";
-import NotFound from "@/pages/NotFound";
+import AdminLogin from "@/pages/AdminLogin";
 
 export default function AdminRoute({ children }: { children: React.ReactNode }) {
   const { loading, isAdmin } = useAuth();
@@ -8,5 +8,5 @@ export default function AdminRoute({ children }: { children: React.ReactNode }) 
     return <main className="min-h-screen bg-[#FBFCFF]" aria-busy="true" />;
   }
 
-  return isAdmin ? <>{children}</> : <NotFound />;
+  return isAdmin ? <>{children}</> : <AdminLogin />;
 }

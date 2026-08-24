@@ -1277,10 +1277,43 @@ var appRouter = router({
 });
 
 // server/_core/context.ts
+import { createClient as createClient2 } from "@supabase/supabase-js";
+var supabaseAuthClient = null;
+function getSupabaseAuthClient() {
+  if (!ENV.supabaseUrl || !ENV.supabaseServiceRoleKey) return null;
+  if (!supabaseAuthClient) {
+    supabaseAuthClient = createClient2(ENV.supabaseUrl, ENV.supabaseServiceRoleKey, {
+      auth: { persistSession: false }
+    });
+  }
+  return supabaseAuthClient;
+}
 async function createContext(opts) {
   let user = null;
   try {
-    user = await sdk.authenticateRequest(opts.req);
+    const authHeader = opts.req.headers.authorization;
+    const token = authHeader?.startsWith("Bearer ") ? authHeader.slice(7) : null;
+    if (token) {
+      const supabase = getSupabaseAuthClient();
+      if (supabase) {
+        const { data, error } = await supabase.auth.getUser(token);
+        if (!error && data.user?.email) {
+          const email = data.user.email;
+          user = await getUserByEmail(email) ?? null;
+          if (!user) {
+            await upsertUser({
+              openId: `supabase:${data.user.id}`,
+              email,
+              name: data.user.user_metadata?.name ?? null,
+              loginMethod: "supabase",
+              role: "owner",
+              lastSignedIn: /* @__PURE__ */ new Date()
+            });
+            user = await getUserByEmail(email) ?? null;
+          }
+        }
+      }
+    }
   } catch (error) {
     user = null;
   }
