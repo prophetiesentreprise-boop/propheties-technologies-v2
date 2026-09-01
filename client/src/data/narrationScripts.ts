@@ -72,6 +72,7 @@ export const narrationScripts = {
 // sur la voix de synthèse du navigateur pour ces pages précises.
 // ---------------------------------------------------------------------------
 import { serviceExpertises } from "./serviceExpertises";
+import { expertiseNarrationAudio } from "./expertiseNarrationAudio";
 
 const expertiseNarrationEntries: Record<
   string,
@@ -83,7 +84,7 @@ const expertiseNarrationEntries: Record<
       path,
       {
         label: expertise.title,
-        audioUrl: null,
+        audioUrl: expertiseNarrationAudio[path] ?? null,
         text: `${expertise.title}. ${expertise.summary} ${expertise.intro}`,
       },
     ];

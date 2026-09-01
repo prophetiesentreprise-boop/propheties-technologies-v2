@@ -1,44 +1,27 @@
 /**
  * =========================================================================
- * GÉNÉRATION DE LA NARRATION AUDIO — Voix humaine via ElevenLabs
+ * GÉNÉRATION COMPLÈTE DE LA NARRATION AUDIO — Voix humaine (ElevenLabs)
  * =========================================================================
- * Remplace les 11 fichiers audio manquants par de vrais enregistrements
- * générés avec une voix IA très proche d'une voix humaine réelle (bien
- * au-dessus de la qualité "robotique" des voix de synthèse classiques).
+ * Génère un vrai fichier audio pour LES 36 PAGES (les 11 pages
+ * principales + les 25 pages de sous-expertises), avec la correction
+ * phonétique nécessaire pour que "Propheties" se prononce "Prophéties"
+ * (comme le mot français "prophéties") plutôt que d'être lu tel quel.
  *
- * CE DONT TU AS BESOIN AVANT DE LANCER CE SCRIPT :
- *
- *   1. Un compte sur elevenlabs.io (un plan gratuit existe, avec un quota
- *      de caractères limité par mois ; largement suffisant pour ces 11
- *      textes qui totalisent environ 2400 caractères).
- *
- *   2. Une clé API : elevenlabs.io > Profil > API Keys > Create.
- *
- *   3. Une voix d'homme française : elevenlabs.io > Voice Library, filtre
- *      Language = French, Gender = Male. Écoute les échantillons, choisis
- *      celle qui te plaît (voix chaleureuse, professionnelle, naturelle —
- *      c'est exactement le ton déjà défini dans narrationScripts.ts).
- *      Clique "Add to my voices", puis copie son "Voice ID" (visible dans
- *      Voice Library ou dans My Voices).
- *
- *   4. Dans le fichier .env à la racine du projet (le même que pour
- *      DATABASE_URL), ajoute ces 4 lignes :
- *
- *        ELEVENLABS_API_KEY=ta_cle_ici
- *        ELEVENLABS_VOICE_ID=l_id_de_la_voix_choisie
- *        SUPABASE_URL=https://ntcvnxqunikhbizipowi.supabase.co
- *        SUPABASE_SERVICE_ROLE_KEY=ta_cle_secrete_service_role
+ * PRÉREQUIS dans ton fichier .env :
+ *   ELEVENLABS_API_KEY=...
+ *   ELEVENLABS_VOICE_ID=...
+ *   SUPABASE_URL=...
+ *   SUPABASE_SERVICE_ROLE_KEY=...
  *
  * UTILISATION :
- *
  *   npx tsx scripts/generate-narration.ts
  *
- * Le script va :
- *   - Générer les 11 fichiers audio (un appel par page)
- *   - Les héberger sur Supabase Storage (bucket "site-audio", créé
- *     automatiquement s'il n'existe pas)
- *   - Mettre à jour automatiquement narrationScripts.ts avec les nouvelles
- *     adresses audio — tu n'as rien à modifier à la main
+ * Le script :
+ *   - Génère l'audio des 11 pages principales (narrationScripts.ts)
+ *   - Génère l'audio des 25 pages de sous-expertises (serviceExpertises.ts)
+ *   - Héberge chaque fichier sur Supabase Storage (bucket "site-audio")
+ *   - Met à jour narrationScripts.ts (11 pages) et
+ *     expertiseNarrationAudio.ts (25 pages) automatiquement
  * =========================================================================
  */
 import "dotenv/config";
@@ -46,14 +29,25 @@ import { createClient } from "@supabase/supabase-js";
 import { readFileSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { narrationScripts } from "../client/src/data/narrationScripts";
+import { serviceExpertises } from "../client/src/data/serviceExpertises";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const SCRIPTS_FILE = path.resolve(__dirname, "../client/src/data/narrationScripts.ts");
+const NARRATION_SCRIPTS_FILE = path.resolve(__dirname, "../client/src/data/narrationScripts.ts");
+const EXPERTISE_AUDIO_FILE = path.resolve(__dirname, "../client/src/data/expertiseNarrationAudio.ts");
 const BUCKET = "site-audio";
+
+// Correction phonétique : "Propheties" (orthographe de la marque) doit se
+// prononcer comme "Prophéties" en français, pas être lu lettre à lettre.
+// On ne change que le texte ENVOYÉ à la synthèse vocale — jamais le nom
+// affiché sur le site.
+function applyPhoneticFixes(text: string): string {
+  return text.replace(/Propheties/g, "Prophéties");
+}
 
 async function ensureBucket(supabase: ReturnType<typeof createClient>) {
   const { data: buckets } = await supabase.storage.listBuckets();
-  if (!buckets?.some(b => b.name === BUCKET)) {
+  if (!buckets?.some((b) => b.name === BUCKET)) {
     const { error } = await supabase.storage.createBucket(BUCKET, { public: true });
     if (error) throw new Error(`Impossible de créer le bucket "${BUCKET}" : ${error.message}`);
     console.log(`✓ Bucket "${BUCKET}" créé.`);
@@ -66,10 +60,10 @@ async function generateAudio(apiKey: string, voiceId: string, text: string): Pro
     headers: {
       "xi-api-key": apiKey,
       "Content-Type": "application/json",
-      "Accept": "audio/mpeg",
+      Accept: "audio/mpeg",
     },
     body: JSON.stringify({
-      text,
+      text: applyPhoneticFixes(text),
       model_id: "eleven_multilingual_v2",
       voice_settings: { stability: 0.5, similarity_boost: 0.75, style: 0.3, use_speaker_boost: true },
     }),
@@ -101,53 +95,63 @@ async function main() {
   const supabase = createClient(supabaseUrl, supabaseKey, { auth: { persistSession: false } });
   await ensureBucket(supabase);
 
-  const fileContent = readFileSync(SCRIPTS_FILE, "utf-8");
+  // ---- 1) Les 11 pages principales -------------------------------------
+  const staticEntries = Object.entries(narrationScripts) as [string, { label: string; audioUrl: string; text: string }][];
+  let narrationFileContent = readFileSync(NARRATION_SCRIPTS_FILE, "utf-8");
 
-  // Extraction simple des entrées { chemin, label, texte } depuis le fichier source.
-  const entryRegex = /"([^"]+)":\s*\{\s*label:\s*"([^"]+)",\s*audioUrl:\s*"([^"]+)",\s*text:\s*"([^"]+)"/g;
-  const entries: { key: string; label: string; oldUrl: string; text: string }[] = [];
-  let match: RegExpExecArray | null;
-  while ((match = entryRegex.exec(fileContent)) !== null) {
-    entries.push({ key: match[1], label: match[2], oldUrl: match[3], text: match[4] });
-  }
-
-  if (entries.length === 0) {
-    console.error("\n❌ Aucune entrée de narration trouvée dans narrationScripts.ts. Le format du fichier a peut-être changé.\n");
-    process.exit(1);
-  }
-
-  console.log(`\n${entries.length} scripts trouvés. Génération en cours...\n`);
-
-  let updatedContent = fileContent;
-
-  for (const entry of entries) {
+  console.log(`\n${staticEntries.length} pages principales à générer...\n`);
+  for (const [key, entry] of staticEntries) {
+    const fileName = `narration-${key.replace(/^\//, "").replace(/\//g, "-") || "accueil"}.mp3`;
     process.stdout.write(`  → ${entry.label}... `);
     try {
       const audioBuffer = await generateAudio(apiKey, voiceId, entry.text);
-      const fileName = `narration-${entry.key.replace(/^\//, "").replace(/\//g, "-") || "accueil"}.mp3`;
-
-      const { error: uploadError } = await supabase.storage.from(BUCKET).upload(fileName, audioBuffer, {
-        contentType: "audio/mpeg",
-        upsert: true,
-      });
-      if (uploadError) throw new Error(uploadError.message);
-
-      const { data: publicUrlData } = supabase.storage.from(BUCKET).getPublicUrl(fileName);
-      updatedContent = updatedContent.replace(entry.oldUrl, publicUrlData.publicUrl);
-
+      const { error } = await supabase.storage.from(BUCKET).upload(fileName, audioBuffer, { contentType: "audio/mpeg", upsert: true });
+      if (error) throw new Error(error.message);
+      const { data } = supabase.storage.from(BUCKET).getPublicUrl(fileName);
+      narrationFileContent = narrationFileContent.replace(entry.audioUrl, data.publicUrl);
       console.log("✓");
     } catch (err) {
       console.log("✗");
-      console.error(`    Erreur pour "${entry.label}" :`, err instanceof Error ? err.message : err);
+      console.error(`    Erreur :`, err instanceof Error ? err.message : err);
+    }
+  }
+  writeFileSync(NARRATION_SCRIPTS_FILE, narrationFileContent, "utf-8");
+
+  // ---- 2) Les 25 pages de sous-expertises -------------------------------
+  console.log(`\n${serviceExpertises.length} pages de sous-expertises à générer...\n`);
+  const expertiseAudioMap: Record<string, string> = {};
+
+  for (const expertise of serviceExpertises) {
+    const routePath = `/services/${expertise.serviceSlug}/${expertise.slug}`;
+    const text = `${expertise.title}. ${expertise.summary} ${expertise.intro}`;
+    const fileName = `narration-service-${expertise.serviceSlug}-${expertise.slug}.mp3`;
+    process.stdout.write(`  → ${expertise.title}... `);
+    try {
+      const audioBuffer = await generateAudio(apiKey, voiceId, text);
+      const { error } = await supabase.storage.from(BUCKET).upload(fileName, audioBuffer, { contentType: "audio/mpeg", upsert: true });
+      if (error) throw new Error(error.message);
+      const { data } = supabase.storage.from(BUCKET).getPublicUrl(fileName);
+      expertiseAudioMap[routePath] = data.publicUrl;
+      console.log("✓");
+    } catch (err) {
+      console.log("✗");
+      console.error(`    Erreur :`, err instanceof Error ? err.message : err);
     }
   }
 
-  writeFileSync(SCRIPTS_FILE, updatedContent, "utf-8");
-  console.log(`\n✅ Terminé ! narrationScripts.ts mis à jour avec les nouvelles adresses audio.\n`);
-  console.log("N'oublie pas de commiter et redéployer (git add, commit, push) pour que le site public utilise la nouvelle narration.\n");
+  const expertiseFileContent = `// Ce fichier est généré/mis à jour automatiquement par
+// \`pnpm run generate-narration\` — ne le modifie pas à la main.
+// Il associe chaque page de sous-expertise (/services/:service/:expertise)
+// à l'adresse de son fichier audio (voix humaine ElevenLabs).
+export const expertiseNarrationAudio: Record<string, string> = ${JSON.stringify(expertiseAudioMap, null, 2)};
+`;
+  writeFileSync(EXPERTISE_AUDIO_FILE, expertiseFileContent, "utf-8");
+
+  console.log(`\n✅ Terminé ! ${staticEntries.length + Object.keys(expertiseAudioMap).length} fichiers audio générés et connectés.\n`);
+  console.log("N'oublie pas de commiter et redéployer (git add, commit, push) pour publier.\n");
 }
 
-main().catch(error => {
+main().catch((error) => {
   console.error("\n❌ Erreur :", error);
   process.exit(1);
 });
